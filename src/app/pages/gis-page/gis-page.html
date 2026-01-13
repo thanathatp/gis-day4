@@ -27,7 +27,7 @@
       </div>
 
       <!-- Cards -->
-      <app-place-card *ngFor="let place of places()" [data]="place"> </app-place-card>
+      <app-place-card *ngFor="let place of places()" [data]="place" (cardClick)="onPlaceClick($event)"> </app-place-card>
     </div>
   </div>
 </div>

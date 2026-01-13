@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-place-card',
@@ -9,4 +9,9 @@ import { Component, Input } from '@angular/core';
 })
 export class PlaceCard {
   @Input() data: any;
+  @Output() cardClick = new EventEmitter<any>();
+
+  onClick() {
+    this.cardClick.emit(this.data);
+  }
 }

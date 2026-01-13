@@ -55,7 +55,7 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
     this.mapView = new MapView({
       container,
       map: this.map,
-      center: [100.5433989, 13.7029924], // longitude, latitude
+      center: [100.5433989, 13.7029924],
       zoom: 12,
     });
     this.map.add(this.demoGraphicsLayer);
@@ -68,6 +68,18 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     if (this.mapView) {
       this.mapView.destroy();
+    }
+  }
+
+  zoomToLocation(lat: number, long: number): void {
+    if (this.mapView) {
+      this.mapView.goTo({
+        center: [long, lat],
+        zoom: 17
+      }, {
+        duration: 1000,
+        easing: 'ease-in-out'
+      });
     }
   }
 }
