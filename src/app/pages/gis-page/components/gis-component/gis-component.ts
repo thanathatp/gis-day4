@@ -60,7 +60,8 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.map.add(this.demoGraphicsLayer);
     this.map.add(this.healthFacilitiesLayer);
-       this.mapView.when(() => { });
+    this.mapView.ui.move("zoom", "top-right");
+    
     return this.mapView.when();
   }
 
