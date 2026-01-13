@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlaceCard } from './components/place-card/place-card';
 import { GisComponent } from './components/gis-component/gis-component';
@@ -11,6 +11,7 @@ import { GisComponent } from './components/gis-component/gis-component';
   styleUrl: './gis-page.css',
 })
 export class GisPage implements OnInit {
+  @ViewChild(GisComponent) gisComponent!: GisComponent;  
   places = signal<any[]>([]);
 
   parseCsv(csv: string): any[] {
@@ -31,7 +32,6 @@ export class GisPage implements OnInit {
       });
   }
 
-
   ngOnInit() {
     fetch('https://raw.githubusercontent.com/Pantipkub/thai-hospital/refs/heads/main/health_facilities_bangkok_th.csv')
     .then(res => res.text())
@@ -39,5 +39,13 @@ export class GisPage implements OnInit {
       this.places.set(this.parseCsv(csv));
       console.log(this.places)
     });
+  }
+
+  onPlaceClick(place: any) {
+    const lat = parseFloat(place.Lat);
+    const long = parseFloat(place.Long);
+    if (!isNaN(lat) && !isNaN(long)) {
+      this.gisComponent.zoomToLocation(lat, long);
+    }
   }
 }

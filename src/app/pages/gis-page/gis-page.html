@@ -20,7 +20,7 @@
 
     <!-- Sidebar -->
     <div class="w-[360px] shrink-0 overflow-y-auto bg-gray-50 p-3 border-l border-gray-200">
-      <app-place-card *ngFor="let place of places()" [data]="place"> </app-place-card>
+      <app-place-card *ngFor="let place of places()" [data]="place" (cardClick)="onPlaceClick($event)"> </app-place-card>
     </div>
   </div>
 </div>
