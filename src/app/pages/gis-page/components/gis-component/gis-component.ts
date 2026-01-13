@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import Map from '@arcgis/core/Map.js';
 import MapView from '@arcgis/core/views/MapView.js';
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
-import VectorTileLayer from "@arcgis/core/layers/VectorTileLayer.js";
 import CSVLayer from "@arcgis/core/layers/CSVLayer.js";
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer.js";
 import '@arcgis/map-components/components/arcgis-zoom';
@@ -19,10 +18,6 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
   mapView: MapView | null = null;
   
   demoGraphicsLayer = new GraphicsLayer();
-  demoVectorTileLayer = new VectorTileLayer({
-    url: "https://tiles.arcgis.com/tiles/jSaRWj2TDlcN1zOC/arcgis/rest/services/Thailand_Transportation/VectorTileServer"
-  });
-
   healthFacilitiesLayer = new CSVLayer({
     url: 'https://raw.githubusercontent.com/Pantipkub/thai-hospital/refs/heads/main/health_facilities_bangkok_th.csv',
     latitudeField: 'Lat',
@@ -37,14 +32,11 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     renderer: new SimpleRenderer({
       symbol: {
-        type: 'simple-marker',
-        size: 10,
-        color: [59, 130, 246], // Blue color (#3B82F6)
-        outline: {
-          color: [255, 255, 255],
-          width: 2
-        }
-      } as any
+      type: "picture-marker",
+      url: "https://png.pngtree.com/png-clipart/20221229/original/pngtree-hospital-location-pin-icon-in-red-color-png-image_8824531.png",
+      width: "20px",
+      height: "20px"
+      }
     })
   });
 
@@ -64,11 +56,11 @@ export class GisComponent implements OnInit, OnDestroy, AfterViewInit {
       container,
       map: this.map,
       center: [100.5433989, 13.7029924], // longitude, latitude
-      zoom: 20,
+      zoom: 12,
     });
     this.map.add(this.demoGraphicsLayer);
     this.map.add(this.healthFacilitiesLayer);
-    this.mapView.when(() => { });
+       this.mapView.when(() => { });
     return this.mapView.when();
   }
 
