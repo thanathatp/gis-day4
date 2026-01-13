@@ -1,9 +1,21 @@
-<div class="bg-white rounded-lg p-3 mb-3 shadow-md cursor-pointer transition hover:bg-gray-100">
-  <h3 class="text-sm font-semibold text-gray-900">
-    {{ data.Agency }}
-  </h3>
+<div
+  class="bg-white rounded-lg mb-3 shadow-md cursor-pointer transition hover:bg-gray-100 overflow-hidden"
+>
+  <!-- Image -->
+  <img
+    [src]="data.ImageUrl || 'https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg'"
+    alt="Hospital"
+    class="w-full h-28 object-cover"
+  />
 
-  <p class="mt-1 text-xs text-gray-600">
-    {{ data.Address }}
-  </p>
+  <!-- Content -->
+  <div class="p-3">
+    <h3 class="text-sm font-semibold text-gray-900">
+      {{ data.Agency }}
+    </h3>
+
+    <p class="mt-1 text-xs text-gray-600 line-clamp-2">
+      {{ data.Address }}
+    </p>
+  </div>
 </div>
