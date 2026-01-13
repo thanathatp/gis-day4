@@ -1,11 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlaceCard } from './components/place-card/place-card';
+import { GisComponent } from './components/gis-component/gis-component';
 
 @Component({
   selector: 'app-gis-page',
   standalone: true,
-  imports: [CommonModule, PlaceCard],
+  imports: [CommonModule, PlaceCard, GisComponent],
   templateUrl: './gis-page.html',
   styleUrl: './gis-page.css',
 })
