@@ -1,1 +1,24 @@
-<p>gis-page works!</p>
+<div class="flex flex-col h-screen overflow-hidden">
+  <!-- Header -->
+  <header class="h-14 shrink-0 bg-gray-800 text-white flex items-center px-4 font-semibold shadow">
+    GIS Dashboard
+  </header>
+
+  <!-- Body -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Map -->
+    <div class="flex-1 bg-gray-200 flex items-center justify-center text-gray-500">
+      Map
+    </div>
+
+    <!-- Sidebar -->
+    <div
+      class="w-[360px] shrink-0 overflow-y-auto bg-gray-50 p-3 border-l border-gray-200"
+    >
+      <app-place-card
+        *ngFor="let place of places()"
+        [data]="place">
+      </app-place-card>
+    </div>
+  </div>
+</div>
